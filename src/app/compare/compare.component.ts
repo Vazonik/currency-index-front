@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ci-explore',
+  selector: 'ci-compare',
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss']
 })
