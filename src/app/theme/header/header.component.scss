@@ -1,6 +1,49 @@
 @use '../theme';
 
+$color-active-li: rgba(255, 255, 255, 0.05);
+
 .header {
     background-color: theme.$color-header-bg;
     height: theme.$header-height;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+
+    .logo {
+        font-size: 23px;
+        letter-spacing: 1px;
+        margin-right: 44px;
+    }
+
+    a {
+        text-decoration: none;
+        color: theme.$color-font;
+    }
+
+    nav ul {
+        box-sizing: border-box;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+
+        li a {
+            display: flex;
+            align-items: center;
+            align-content: center;
+            height: theme.$header-height;
+            padding: 0 16px;
+
+            &:hover {
+                background-color: $color-active-li;
+            }
+        }
+
+        .active {
+            background-color: $color-active-li;
+        }
+    }
+    
+    
 }

@@ -1,3 +1,15 @@
 <header class="header">
-
+    <a href="/" class="logo"><b>Currency</b> Index</a>
+    <nav>
+        <ul>
+            <li *ngFor="let i of navigation">
+                <a
+                    [routerLink]="[i.url]"
+                    [ngClass]="{'active': i.url == url}"
+                >
+                    {{i.label}}
+                </a>
+            </li>
+        </ul>
+    </nav>
 </header>
