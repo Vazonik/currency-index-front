@@ -1,0 +1,6 @@
+@use '../theme';
+
+.header {
+    background-color: theme.$color-header-bg;
+    height: theme.$header-height;
+}

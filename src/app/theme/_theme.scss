@@ -1,0 +1,15 @@
+$color-background: #0D1117;
+$color-font: #fff;
+$color-header-bg: #161B22;
+
+$font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+
+$header-height: 64px;
+
+body {
+    background-color: $color-background;
+    color: $color-font;
+    color-scheme: dark;
+    font-family: $font-family;
+    margin: 0;
+}
