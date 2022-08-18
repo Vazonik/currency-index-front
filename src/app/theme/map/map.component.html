@@ -1,21 +1,36 @@
-<div class="map">
+<div class="map" (window:resize)="onResize($event)">
   <svg
     baseprofile="tiny"
     fill="#ececec"
-    height="429"
+    [attr.height]="mapHeight"
+    [attr.width]="mapWidht"
     stroke="black"
     stroke-linecap="round"
     stroke-linejoin="round"
     stroke-width=".2"
     version="1.2"
     viewbox="0 0 2000 857"
-    width="1000"
     xmlns="http://www.w3.org/2000/svg"
+    (mousedown)="onMouseDown()"
+    (window:mouseup)="onMouseUp()"
+    (window:mousemove)="onMouseMove($event)"
   >
-    <g transform="scale(0.5)">
-      <a *ngFor="let country of mapData" [attr.href]="country.name">
+    <g
+      [attr.transform]="
+        'scale(' + scale + ') translate(' + xTranslate + ',' + yTranslate + ')'
+      "
+    >
+      <a *ngFor="let country of mapData">
         <path *ngFor="let d of country.paths" [attr.d]="d"></path>
       </a>
     </g>
   </svg>
+  <div class="toolbar">
+    <button type="button" class="zoom-btn" id="plus" (click)="zoomPlus()">
+      +
+    </button>
+    <button type="button" class="zoom-btn" id="minus" (click)="zoomMinus()">
+      -
+    </button>
+  </div>
 </div>
