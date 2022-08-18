@@ -1,0 +1,12 @@
+.map {
+  overflow: hidden;
+  width: min-content;
+  height: min-content;
+  padding: 16px 2px;
+
+  a {
+    &:hover path {
+      fill: yellow;
+    }
+  }
+}
