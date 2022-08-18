@@ -5,7 +5,7 @@ import { CompareComponent } from './compare.component';
 const routes: Routes = [
   {
     path: '',
-    component: CompareComponent
+    component: CompareComponent,
   },
 ];
 

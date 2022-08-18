@@ -4,16 +4,18 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'explore',
-    loadChildren: () => import('./explore/explore.module').then((m) => m.ExploreModule),
+    loadChildren: () =>
+      import('./explore/explore.module').then((m) => m.ExploreModule),
   },
   {
     path: 'compare',
-    loadChildren: () => import('./compare/compare.module').then((m) => m.CompareModule),
+    loadChildren: () =>
+      import('./compare/compare.module').then((m) => m.CompareModule),
   },
   {
     path: '**',
-    redirectTo: '/explore'
-  }
+    redirectTo: '/explore',
+  },
 ];
 
 const config: ExtraOptions = {
@@ -22,6 +24,6 @@ const config: ExtraOptions = {
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, config)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -11,8 +11,9 @@ const routes: Routes = [
   },
   {
     path: '**',
-    loadChildren: () => import('./details/details.module').then(m => m.DetailsModule),
-  }
+    loadChildren: () =>
+      import('./details/details.module').then((m) => m.DetailsModule),
+  },
 ];
 
 @NgModule({
