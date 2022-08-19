@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { countries } from './map-svg-data';
 import { Vector } from 'src/app/core/helpers/vector';
 
-const MAP_WIDTH = 1000;
-const MAP_HEIGHT = 428;
+const MAP_WIDTH = 2000;
+const MAP_HEIGHT = 857;
 const WINDOW_WIDTH = 1920;
 const ZOOM_POWER = 1.4;
 const MAX_ZOOM = 7;
@@ -19,8 +19,8 @@ export class MapComponent implements OnInit {
 
   public windowScaleFactor = 1;
   public mapScaleFactor = 1;
-  public mapWidht = MAP_WIDTH;
-  public mapHeight = MAP_HEIGHT;
+  public mapWidht = MAP_WIDTH * INIT_SCALE;
+  public mapHeight = MAP_HEIGHT * INIT_SCALE;
   public scale = INIT_SCALE;
   public xTranslate = 0;
   public yTranslate = 0;
@@ -72,8 +72,8 @@ export class MapComponent implements OnInit {
   private scaleMapWithWindow(windowWidth: number) {
     this.windowScaleFactor = windowWidth / WINDOW_WIDTH;
     this.scale = INIT_SCALE * this.mapScaleFactor * this.windowScaleFactor;
-    this.mapWidht = this.windowScaleFactor * MAP_WIDTH;
-    this.mapHeight = this.windowScaleFactor * MAP_HEIGHT;
+    this.mapWidht = this.windowScaleFactor * MAP_WIDTH * INIT_SCALE;
+    this.mapHeight = this.windowScaleFactor * MAP_HEIGHT * INIT_SCALE;
   }
 
   private zoomMap(newMapScaleFactor: number) {
@@ -81,25 +81,14 @@ export class MapComponent implements OnInit {
     this.mapScaleFactor = newMapScaleFactor;
     this.scale = INIT_SCALE * this.mapScaleFactor * this.windowScaleFactor;
     this.dragMap({
-      x:
-        -(
-          MAP_WIDTH / (INIT_SCALE * oldMapScaleFactor) -
-          MAP_WIDTH / (INIT_SCALE * newMapScaleFactor)
-        ) / 2,
-      y:
-        -(
-          MAP_HEIGHT / (INIT_SCALE * oldMapScaleFactor) -
-          MAP_HEIGHT / (INIT_SCALE * newMapScaleFactor)
-        ) / 2,
+      x: -(MAP_WIDTH / oldMapScaleFactor - MAP_WIDTH / newMapScaleFactor) / 2,
+      y: -(MAP_HEIGHT / oldMapScaleFactor - MAP_HEIGHT / newMapScaleFactor) / 2,
     });
   }
 
   private dragMap(offset: Vector) {
-    const MIN_X_TRANSLATE =
-      -MAP_WIDTH / INIT_SCALE + MAP_WIDTH / (INIT_SCALE * this.mapScaleFactor);
-    const MIN_Y_TRANSLATE =
-      -MAP_HEIGHT / INIT_SCALE +
-      MAP_HEIGHT / (INIT_SCALE * this.mapScaleFactor);
+    const MIN_X_TRANSLATE = MAP_WIDTH / this.mapScaleFactor - MAP_WIDTH;
+    const MIN_Y_TRANSLATE = MAP_HEIGHT / this.mapScaleFactor - MAP_HEIGHT;
 
     console.log(MIN_X_TRANSLATE);
 
