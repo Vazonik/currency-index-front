@@ -11,7 +11,7 @@
     version="1.2"
     viewbox="0 0 2000 857"
     xmlns="http://www.w3.org/2000/svg"
-    (mousedown)="onMouseDown()"
+    (mousedown)="onMouseDown($event)"
     (window:mouseup)="onMouseUp()"
     (window:mousemove)="onMouseMove($event)"
   >
@@ -20,7 +20,7 @@
         'scale(' + scale + ') translate(' + xTranslate + ',' + yTranslate + ')'
       "
     >
-      <a *ngFor="let country of mapData">
+      <a *ngFor="let country of mapData" (click)="onCountryClick(country.id)">
         <path *ngFor="let d of country.paths" [attr.d]="d"></path>
       </a>
     </g>
@@ -33,4 +33,5 @@
       -
     </button>
   </div>
+  <ci-tooltip></ci-tooltip>
 </div>

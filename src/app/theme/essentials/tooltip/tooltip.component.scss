@@ -1,0 +1,10 @@
+@use "../../theme";
+
+.tooltip {
+  border: 1px solid #fff2;
+  background-color: theme.$color-header-bg;
+  width: min-content;
+  height: min-content;
+  padding: 6px 8px;
+  border-radius: 6px;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { countries } from './map-svg-data';
 import { Vector } from 'src/app/core/helpers/vector';
 
@@ -15,8 +15,10 @@ const INIT_SCALE = 0.5;
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-  public mapData = countries;
+  @Output()
+  countryClick: EventEmitter<string> = new EventEmitter<string>();
 
+  public mapData = countries;
   public windowScaleFactor = 1;
   public mapScaleFactor = 1;
   public mapWidht = MAP_WIDTH * INIT_SCALE;
@@ -52,21 +54,27 @@ export class MapComponent implements OnInit {
     this.zoomMap(newMapScaleFactor);
   }
 
-  public onMouseDown() {
-    this.dragging = true;
+  public onMouseDown(e: MouseEvent) {
+    if (e.buttons == 1) {
+      this.dragging = true;
+    }
   }
 
   public onMouseUp() {
     this.dragging = false;
   }
 
-  public onMouseMove(e: any) {
+  public onMouseMove(e: MouseEvent) {
     if (this.dragging) {
       this.dragMap({
         x: e.movementX / this.scale,
         y: e.movementY / this.scale,
       });
     }
+  }
+
+  public onCountryClick(id: string) {
+    this.countryClick.emit(id);
   }
 
   private scaleMapWithWindow(windowWidth: number) {
@@ -89,8 +97,6 @@ export class MapComponent implements OnInit {
   private dragMap(offset: Vector) {
     const MIN_X_TRANSLATE = MAP_WIDTH / this.mapScaleFactor - MAP_WIDTH;
     const MIN_Y_TRANSLATE = MAP_HEIGHT / this.mapScaleFactor - MAP_HEIGHT;
-
-    console.log(MIN_X_TRANSLATE);
 
     let newXTranslate = this.xTranslate;
     let newYTranslate = this.yTranslate;

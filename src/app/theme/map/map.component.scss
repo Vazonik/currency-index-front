@@ -8,6 +8,8 @@
   position: relative;
 
   a {
+    cursor: pointer;
+
     &:hover path {
       fill: theme.$color-primary;
     }
