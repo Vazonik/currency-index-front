@@ -6,7 +6,7 @@ const MAP_WIDTH = 1000;
 const MAP_HEIGHT = 428;
 const WINDOW_WIDTH = 1920;
 const ZOOM_POWER = 1.4;
-const MAX_ZOOM = 5;
+const MAX_ZOOM = 7;
 const INIT_SCALE = 0.5;
 
 @Component({
@@ -39,6 +39,7 @@ export class MapComponent implements OnInit {
     if (newMapScaleFactor > MAX_ZOOM) {
       newMapScaleFactor = MAX_ZOOM;
     }
+
     this.zoomMap(newMapScaleFactor);
   }
 
@@ -47,6 +48,7 @@ export class MapComponent implements OnInit {
     if (newMapScaleFactor < 1) {
       newMapScaleFactor = 1;
     }
+
     this.zoomMap(newMapScaleFactor);
   }
 
@@ -75,13 +77,31 @@ export class MapComponent implements OnInit {
   }
 
   private zoomMap(newMapScaleFactor: number) {
+    const oldMapScaleFactor = this.mapScaleFactor;
     this.mapScaleFactor = newMapScaleFactor;
     this.scale = INIT_SCALE * this.mapScaleFactor * this.windowScaleFactor;
+    this.dragMap({
+      x:
+        -(
+          MAP_WIDTH / (INIT_SCALE * oldMapScaleFactor) -
+          MAP_WIDTH / (INIT_SCALE * newMapScaleFactor)
+        ) / 2,
+      y:
+        -(
+          MAP_HEIGHT / (INIT_SCALE * oldMapScaleFactor) -
+          MAP_HEIGHT / (INIT_SCALE * newMapScaleFactor)
+        ) / 2,
+    });
   }
 
   private dragMap(offset: Vector) {
-    const MIN_X_TRANSLATE = -MAP_WIDTH / INIT_SCALE + MAP_WIDTH / this.scale;
-    const MIN_Y_TRANSLATE = -MAP_HEIGHT / INIT_SCALE + MAP_HEIGHT / this.scale;
+    const MIN_X_TRANSLATE =
+      -MAP_WIDTH / INIT_SCALE + MAP_WIDTH / (INIT_SCALE * this.mapScaleFactor);
+    const MIN_Y_TRANSLATE =
+      -MAP_HEIGHT / INIT_SCALE +
+      MAP_HEIGHT / (INIT_SCALE * this.mapScaleFactor);
+
+    console.log(MIN_X_TRANSLATE);
 
     let newXTranslate = this.xTranslate;
     let newYTranslate = this.yTranslate;
