@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { countries } from './map-svg-data';
+import { countries, Country } from './map-svg-data';
 import { Vector } from 'src/app/core/helpers/vector';
 
 const MAP_WIDTH = 2000;
@@ -27,6 +27,7 @@ export class MapComponent implements OnInit {
   public xTranslate = 0;
   public yTranslate = 0;
   public dragging = false;
+  public countryNameHover: string | undefined = undefined;
 
   public ngOnInit(): void {
     this.scaleMapWithWindow(window.innerWidth);
@@ -75,6 +76,14 @@ export class MapComponent implements OnInit {
 
   public onCountryClick(id: string) {
     this.countryClick.emit(id);
+  }
+
+  public onCountryMouseOver(id: string) {
+    this.countryNameHover = countries.find((o) => o.id == id)?.name;
+  }
+
+  public onCountryMouseOut() {
+    this.countryNameHover = undefined;
   }
 
   private scaleMapWithWindow(windowWidth: number) {

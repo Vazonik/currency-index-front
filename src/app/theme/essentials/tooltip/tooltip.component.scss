@@ -5,6 +5,11 @@
   background-color: theme.$color-header-bg;
   width: min-content;
   height: min-content;
-  padding: 6px 8px;
+  padding: 4px 6px;
+  font-size: 12px;
   border-radius: 6px;
+  position: absolute;
+  transform: translate(20px, -20px);
+  overflow: hidden;
+  white-space: nowrap;
 }

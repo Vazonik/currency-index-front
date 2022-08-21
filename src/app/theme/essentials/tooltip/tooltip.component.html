@@ -1,3 +1,8 @@
-<div class="tooltip">
+<div
+  class="tooltip"
+  (window:mousemove)="onMouseMove($event)"
+  [style.top]="yPos + 'px'"
+  [style.left]="xPos + 'px'"
+>
   <span>{{ text }}</span>
 </div>

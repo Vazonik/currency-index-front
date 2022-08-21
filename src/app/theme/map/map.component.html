@@ -20,7 +20,12 @@
         'scale(' + scale + ') translate(' + xTranslate + ',' + yTranslate + ')'
       "
     >
-      <a *ngFor="let country of mapData" (click)="onCountryClick(country.id)">
+      <a
+        *ngFor="let country of mapData"
+        (click)="onCountryClick(country.id)"
+        (mouseover)="onCountryMouseOver(country.id)"
+        (mouseout)="onCountryMouseOut()"
+      >
         <path *ngFor="let d of country.paths" [attr.d]="d"></path>
       </a>
     </g>
@@ -33,5 +38,8 @@
       -
     </button>
   </div>
-  <ci-tooltip></ci-tooltip>
 </div>
+<ci-tooltip
+  *ngIf="countryNameHover != undefined"
+  [text]="countryNameHover"
+></ci-tooltip>
