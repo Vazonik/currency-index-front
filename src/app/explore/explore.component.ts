@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './explore.component.html',
   styleUrls: ['./explore.component.scss'],
 })
-export class ExploreComponent {}
+export class ExploreComponent {
+  public title = '🇨🇭 Switzerland - Swiss Franc (CHF)';
+}
