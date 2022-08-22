@@ -1,4 +1,30 @@
 .content {
   padding-left: 32px;
   padding-right: 32px;
+  padding-bottom: 8px;
+  display: grid;
+  height: 100%;
+  grid-template-columns: min-content auto;
+  grid-template-rows: min-content min-content auto;
+  align-content: stretch;
+}
+
+.search {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.map {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.sm-details {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+.chart {
+  grid-column: 2 / 3;
+  grid-row: 1 / 4;
 }
