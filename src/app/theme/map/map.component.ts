@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { countries, Country } from './map-svg-data';
+import { countries, CountrySVG } from './map-svg-data';
 import { Vector } from 'src/app/core/helpers/vector';
 
 const MAP_WIDTH = 2000;
